@@ -14,12 +14,10 @@ for (i = 0; i < pacientes.length; i++) {
     //OBTÉM O VALOR PESO
     var tdPeso = paciente.querySelector(".info-peso");
     var peso = tdPeso.textContent;
-    console.log(peso);
 
     //OBTÉM O VALOR ALTURA
     var tdAltura = document.querySelector(".info-altura");
     var altura = tdAltura.textContent;
-    console.log(altura);
 
     //CALCULA IMC
     var IMC = peso / (altura * altura);
@@ -34,17 +32,40 @@ for (i = 0; i < pacientes.length; i++) {
         tdIMC.textContent = IMC;
     }
 
+    //ALERTAS DE PESO/ALTURA INVÁLIDA
     if(peso <= 0 || peso >= 1000){
         var pesoValido = false;
         alert("Peso inválido!");
-        tdIMC.textContent = 'Valor inválido!';
+        tdIMC.textContent = 'Peso inválido!';
         paciente.classList.add('paciente_invalido');
     }
 
     if(altura < 0 || altura > 3.00){
         var alturaValida = false;
         alert("Altura inválida!");
+        tdIMC.textContent = 'Altura inválida!';
+        paciente.classList.add('paciente_invalido');
     }
+};
 
+var addPaciente = document.querySelector('#adicionar-paciente');
 
-}
+addPaciente.addEventListener('click',
+    function (event){
+        event.preventDefault();
+        console.log('paciente adicionado');
+
+        var form = document.querySelector('#form-adiciona');
+
+        var nome = form.nome.value;
+        var peso = form.peso.value;
+        var altura = form.altura.value;
+        var gordura = form.gordura.value;[
+
+        console.log(nome);
+        console.log(peso);
+        console.log(altura);
+        console.log(gordura);
+        ]
+    }
+);
