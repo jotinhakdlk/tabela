@@ -8,19 +8,20 @@ titulo.textContent = "João Nutrição";
 //SELECIONA PACIENTE
 var pacientes = document.querySelectorAll(".paciente");
 
-for (i = 0; i < pacientes.length; i++) {
-    paciente = pacientes[i];
+for (i = 0; i < pacientes.length; i++){
+
+    var paciente = pacientes[i];
     
     //OBTÉM O VALOR PESO
     var tdPeso = paciente.querySelector(".info-peso");
     var peso = tdPeso.textContent;
 
     //OBTÉM O VALOR ALTURA
-    var tdAltura = document.querySelector(".info-altura");
+    var tdAltura = paciente.querySelector(".info-altura");
     var altura = tdAltura.textContent;
 
     //CALCULA IMC
-    var IMC = peso / (altura * altura);
+    var IMC = calculaIMC(peso, altura);
 
     //VALORES BOOLEANOS
     var pesoValido = true;
@@ -29,8 +30,10 @@ for (i = 0; i < pacientes.length; i++) {
     //AVISO DE VALOR INVÁLIDO
     if(pesoValido && alturaValida){
         var tdIMC = paciente.querySelector(".info-imc");
-        tdIMC.textContent = IMC;
+        tdIMC.innerText = IMC;
     }
+
+
 
     //ALERTAS DE PESO/ALTURA INVÁLIDA
     if(peso <= 0 || peso >= 1000){
@@ -46,4 +49,10 @@ for (i = 0; i < pacientes.length; i++) {
         tdIMC.textContent = 'Altura inválida!';
         paciente.classList.add('paciente_invalido');
     }
+};
+
+function calculaIMC(peso, altura){
+    var imc = peso / (altura * altura);
+    
+    return imc.toFixed(2);
 };
