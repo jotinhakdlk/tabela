@@ -12,8 +12,13 @@ addPaciente.addEventListener('click',
         console.log(paciente);
 
         var pacienteTr = criaTr(paciente);
+        if(!validaPaciente(paciente)){
+            console.log('errou burro');
+            return;
+        }
         var tabela = document.querySelector('#tabela-pacientes');
         tabela.appendChild(pacienteTr);
+
     }
 );
 
@@ -55,4 +60,12 @@ function criaTd(dado, classes){
     td.innerText = dado;
     td.classList.add(classes);
     return td;
+}
+
+function validaPaciente(paciente){
+    if(pesoValido(paciente.peso)){
+        return true;
+    }else{
+        return false;
+    }
 }
