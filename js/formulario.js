@@ -2,7 +2,7 @@
 var addPaciente = document.querySelector('#adicionar-paciente');
 
 addPaciente.addEventListener('click',
-    function (event){
+    function (event) {
         event.preventDefault();
         console.log('paciente adicionado');
 
@@ -10,25 +10,29 @@ addPaciente.addEventListener('click',
 
         var paciente = dadosPacienteFormulario(form);
         console.log(paciente);
-
         var pacienteTr = criaTr(paciente);
-        if(!validaPaciente(paciente)){
-            console.log('errou burro');
-            return;
+
+        var erros = validarPaciente(paciente);
+
+        if (erros.length > 0) {
+            var mensagem_erro = document.querySelector('#mensagem-erro');
+            mensagem_erro.innerText = erros;
+            console.log('Peso inválido!');
+            return
         }
+
         var tabela = document.querySelector('#tabela-pacientes');
         tabela.appendChild(pacienteTr);
-
     }
 );
 
-function dadosPacienteFormulario(form){
+function dadosPacienteFormulario(form) {
 
-//objeto = {
+    //objeto = {
     //propriedade/caracteristica = valor,
     //propriedade/caracteristica = valor,
     //propriedade/caracteristica = valor
-//}
+    //}
 
     var paciente = {
         nome: form.nome.value,
@@ -41,31 +45,36 @@ function dadosPacienteFormulario(form){
     return paciente;
 }
 
-function criaTr(paciente){
-        //CRIA TAG <tr>
-        var pacienteTr = document.createElement('tr');
-        pacienteTr.classList.add("paciente");
+function criaTr(paciente) {
+    //CRIA TAG <tr>
+    var pacienteTr = document.createElement('tr');
+    pacienteTr.classList.add("paciente");
 
-        pacienteTr.appendChild(criaTd(paciente.nome, "info-nome"));
-        pacienteTr.appendChild(criaTd(paciente.peso, "info-peso"));
-        pacienteTr.appendChild(criaTd(paciente.altura, "info-altura"));
-        pacienteTr.appendChild(criaTd(paciente.gordura, "info-gordura"));
-        pacienteTr.appendChild(criaTd(paciente. IMC, "info-imc"));
+    pacienteTr.appendChild(criaTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(criaTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(criaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(criaTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(criaTd(paciente.IMC, "info-imc"));
 
-        return pacienteTr;
+    return pacienteTr;
 }
 
-function criaTd(dado, classes){
+function criaTd(dado, classes) {
     var td = document.createElement("td");
     td.innerText = dado;
     td.classList.add(classes);
     return td;
 }
 
-function validaPaciente(paciente){
-    if(pesoValido(paciente.peso)){
-        return true;
-    }else{
-        return false;
-    }
-}
+
+
+function validarPaciente(paciente) {
+
+    var erros = [];
+
+    if (!validarPeso(paciente.peso)) erros.push('Peso errado!');
+    
+    if (!validarAltura(paciente.altura)) erros.push('Altura inválida!');
+
+    return erros;
+};

@@ -1,9 +1,10 @@
 *{
 	box-sizing: border-box;
+	font-family: "Comic Sans MS", cursive, sans-serif;
  }
 
 body{
-	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: 14px;
 }
 
@@ -55,7 +56,6 @@ table{
 	width: 100%;
 	margin-bottom : .5em;
     table-layout: fixed;
-
 }
 
 td, th {
@@ -135,4 +135,8 @@ button[disabled=disabled], button:disabled {
 
 .paciente_invalido{
 	background-color: #c2ff05;
+}
+
+#mensagem-erro{
+	color: red;
 }

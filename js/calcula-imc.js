@@ -57,7 +57,7 @@ function calculaIMC(peso, altura){
 };
 
 function validarPeso(peso){
-    if (peso >= 0 && peso <=1000){
+    if (peso > 0 && peso < 1000){
     return true;
     }else{
         return false;
