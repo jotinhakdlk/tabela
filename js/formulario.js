@@ -15,8 +15,8 @@ addPaciente.addEventListener('click',
         var erros = validarPaciente(paciente);
 
         if (erros.length > 0) {
-            var mensagem_erro = document.querySelector('#mensagem-erro');
-            mensagem_erro.innerText = erros;
+            var mensagem_erro = document.querySelector('#mensagens-erro');
+            exibirMensagemErro(erros);
             console.log('Peso inválido!');
             return
         }
@@ -69,12 +69,31 @@ function criaTd(dado, classes) {
 
 
 function validarPaciente(paciente) {
-
     var erros = [];
-
-    if (!validarPeso(paciente.peso)) erros.push('Peso errado!');
     
-    if (!validarAltura(paciente.altura)) erros.push('Altura inválida!');
+    if(paciente.nome.length ==0) erros.push ('O nome não pode estar vazio');
+    if(paciente.gordura.length ==0) erros.push ('A gordura não pode estar vazia');
+    if(paciente.peso.length ==0) erros.push ('O peso não pode estar vazio');
+    if(paciente.altura.length ==0) erros.push ('A altura não pode estar vazia');
+    if(!validarPeso(paciente.peso)) erros.push('Peso Inválido!');
+    if(!validarAltura(paciente.altura)) erros.push('Altura Inválida!');
 
     return erros;
 };
+
+function exibirMensagemErro(erros){
+    //adicionar cada item do array dentro da <ul>
+
+
+    let ul = document.querySelector('#mensagens-erro')
+    ul.innerHTML = '';
+
+    erros.forEach(function(erro){
+        let li = document.createElement('li');
+        li.innerText = erro
+        ul.appendChild(li);
+    })
+;
+}
+
+const nome = "nome do aluno"

@@ -140,3 +140,14 @@ button[disabled=disabled], button:disabled {
 #mensagem-erro{
 	color: red;
 }
+
+.fadeout{
+	opacity: 0;
+	transition: 1500ms;
+}
+
+#filtrar-tabela{
+	height: 30px;
+	width: 300px;
+	margin-bottom: 30px;
+}
